@@ -3,6 +3,7 @@ import { GeneratorService } from '../services/generator/generator.service';
 import { FieldObject } from '../objects/fields';
 import { FormControl } from '@angular/forms';
 import { ExcelOutput } from '../objects/excel-output';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
     new FieldObject('Nom du fichier', 'fichier.xslx', 'text', new FormControl('fichier.xlsx')),
   ];
 
-  constructor(private generatorService: GeneratorService) {
+  constructor(private generatorService: GeneratorService, private snackBar: MatSnackBar) {
     this.generatorService.numberCount = 20;
     this.numberList = new Array();
   }
@@ -37,13 +38,15 @@ export class HomeComponent implements OnInit {
     }
     numbers.forEach(element => this.numberList.push(element.getNumbersAsString()));
     new ExcelOutput(this.fields[3].fieldValue).write(this.numberList);
+    this.snackBar.dismiss();
+    this.snackBar.open('Terminé !');
   }
 
   click() {
+    this.snackBar.open('Génération...');
     this.generatorService.numberCount = parseInt(this.fields[0].fieldValue, 10);
     this.generatorService.min = parseInt(this.fields[1].fieldValue, 10);
     this.generatorService.max = parseInt(this.fields[2].fieldValue, 10);
-    console.log(this.generatorService);
     this.update();
   }
 

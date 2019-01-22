@@ -26,7 +26,11 @@ export class GeneratorService {
       const number = new Numbers(this._numberSize);
       number.add(this.generateNumber(10, this._max));
       for (let j = 0; j < this._numberSize - 1; j ++) {
-        number.add(this.generateNumber(this._min, this._max));
+        let random = this.generateNumber(this._min, this._max);
+        while (random === number.getRawNumbers[j - 1]) {
+          random = this.generateNumber(this._min, this._max);
+        }
+        number.add(random);
       }
       this.numbers.push(number);
     }
