@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   private numberList: Array<string>;
   private generating: boolean;
 
-  private fields = [
+  fields = [
     new FieldObject('Nombre de chiffres', '20', 'number', new FormControl(20)),
     new FieldObject('Minimum', '1', 'number', new FormControl(1)),
     new FieldObject('Maximum', '50', 'number', new FormControl(50)),
