@@ -1,2 +1,14 @@
 
-<button (click)="click()">generate</button>
+<app-toolbar></app-toolbar>
+<div class="container">
+  <mat-form-field appearance="outline" class="field" *ngFor="let field of fields">
+    <mat-label>{{field.label}}</mat-label>
+    <input matInput placeholder="{{field.placeholder}}" type={{field.type}} [formControl]="field.controller">
+  </mat-form-field>
+  <button mat-flat-button color="accent" (click)="click()">GÉNÉRER</button>
+  <button mat-stroked-button color="primary" (click)="click()">
+    <mat-icon>save_alt</mat-icon>
+    TÉLÉCHARGER LE RÉSULTAT
+  </button>
+</div>
+

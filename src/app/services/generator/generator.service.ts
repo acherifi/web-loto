@@ -15,10 +15,7 @@ export class GeneratorService {
 
   constructor() {
     this.numbers = new Array();
-    this._min = 1;
-    this._max = 50;
     this._numberSize = 5;
-    this._numberCount = 10;
   }
 
   generate() {
@@ -35,8 +32,9 @@ export class GeneratorService {
     }
   }
 
-  private generateNumber(min: number, _max: number): number {
-    return Math.floor(Math.random() * _max) + min;
+  private generateNumber(min: number, max: number): number {
+    const number = Math.floor(Math.random() * (max - min + 1) + min);
+    return number;
   }
 
   get rawNumbers(): Array<Numbers> {
@@ -57,5 +55,9 @@ export class GeneratorService {
 
   set max(max: number) {
     this._max = max;
+  }
+
+  get max(): number {
+    return this._max;
   }
 }
