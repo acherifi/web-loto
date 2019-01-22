@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --output-path docs --base-href https://acherifi.github.io/web-loto && cp docs/index.html docs/404.html && git commit -a -m \"Deploy\" && git push"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "xlsx": "^0.14.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
