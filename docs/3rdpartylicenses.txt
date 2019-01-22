@@ -502,9 +502,6 @@ THE SOFTWARE.
 @angular/common
 MIT
 
-@angular/platform-browser
-MIT
-
 @angular/material
 MIT
 The MIT License
@@ -530,6 +527,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+@angular/platform-browser
+MIT
+
+@angular/material/button
+
+@angular/material/snack-bar
+
 @angular/material/form-field
 
 @angular/forms
@@ -538,8 +542,6 @@ MIT
 @angular/material/toolbar
 
 @angular/material/icon
-
-@angular/material/button
 
 zone.js
 MIT
