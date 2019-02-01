@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
 
   private numberList: Array<string>;
   private generating: boolean;
-  private jsonToDisplay: {}[];
-  private columnDefs = [{headerName: 'Numbers', field: Constants.COLUMN_HEADER}];
+  public jsonToDisplay: {}[];
+  public columnDefs = [{headerName: 'Numbers', field: Constants.COLUMN_HEADER}];
 
   fields = [
     new FieldObject('Nombre de chiffres', '20', 'number', new FormControl(20)),
