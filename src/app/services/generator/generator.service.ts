@@ -23,24 +23,9 @@ export class GeneratorService {
       this.numbers = [];
     }
     for (let i = 0; i < this._numberCount; i ++) {
-      const number = new Numbers(this._numberSize);
-      number.add(this.generateNumber(10, this._max));
-      for (let j = 0; j < this._numberSize - 1; j ++) {
-        let random = this.generateNumber(this._min, this._max);
-        while (random === number.getRawNumbers[j - 1]) {
-          random = this.generateNumber(this._min, this._max);
-        }
-        number.add(random);
-      }
-      this.numbers.push(number);
+      this.numbers.push(new Numbers(this._numberSize, this._min, this._max));
     }
   }
-
-  private generateNumber(min: number, max: number): number {
-    const number = Math.floor(Math.random() * (max - min + 1) + min);
-    return number;
-  }
-
   get rawNumbers(): Array<Numbers> {
     return this.numbers;
   }
