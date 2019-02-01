@@ -55,6 +55,10 @@ export class HomeComponent implements OnInit {
     this.update();
   }
 
+  download() {
+    this.out.write();
+  }
+
   cleanNumberList() {
     if (this.numberList.length !== 0 ) {
       this.numberList = [];
