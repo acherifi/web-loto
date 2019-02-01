@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   private numberList: Array<string>;
   private generating: boolean;
-  private rowData: {}[];
+  private jsonToDisplay: {}[];
   private columnDefs = [{headerName: 'Numbers', field: Constants.COLUMN_HEADER}];
 
   fields = [
@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
     new FieldObject('Maximum', '50', 'number', new FormControl(50)),
     new FieldObject('Nom du fichier', 'fichier.xslx', 'text', new FormControl('fichier.xlsx')),
   ];
+
+  private out = new ExcelOutput(this.fields[3].fieldValue);
 
   constructor(private generatorService: GeneratorService, private snackBar: MatSnackBar) {
     this.generatorService.numberCount = 20;
@@ -36,16 +38,13 @@ export class HomeComponent implements OnInit {
   update() {
     this.generatorService.generate();
     const numbers = this.generatorService.rawNumbers;
-    if (this.numberList.length !== 0 ) {
-      this.numberList = [];
-    }
+    this.cleanNumberList();
     numbers.forEach(element => this.numberList.push(element.getNumbersAsString()));
-    // new ExcelOutput(this.fields[3].fieldValue).write(this.numberList);
-    const out = new ExcelOutput(this.fields[3].fieldValue);
-    out.write(this.numberList);
-    this.rowData = out.objects;
+    this.out.createWorkbook(this.numberList);
+    this.jsonToDisplay = this.out.getJsonData();
     this.snackBar.dismiss();
     this.snackBar.open('Terminé !');
+    setTimeout(() => this.snackBar.dismiss(), 2000);
   }
 
   click() {
@@ -54,6 +53,12 @@ export class HomeComponent implements OnInit {
     this.generatorService.min = parseInt(this.fields[1].fieldValue, 10);
     this.generatorService.max = parseInt(this.fields[2].fieldValue, 10);
     this.update();
+  }
+
+  cleanNumberList() {
+    if (this.numberList.length !== 0 ) {
+      this.numberList = [];
+    }
   }
 
 }
