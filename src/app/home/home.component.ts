@@ -4,6 +4,7 @@ import { FieldObject } from '../objects/fields';
 import { FormControl } from '@angular/forms';
 import { ExcelOutput } from '../objects/excel-output';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Constants } from '../objects/constants';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   private numberList: Array<string>;
   private generating: boolean;
+  private rowData: {}[];
+  private columnDefs = [{headerName: 'Numbers', field: Constants.COLUMN_HEADER}];
 
   fields = [
     new FieldObject('Nombre de chiffres', '20', 'number', new FormControl(20)),
@@ -37,7 +40,10 @@ export class HomeComponent implements OnInit {
       this.numberList = [];
     }
     numbers.forEach(element => this.numberList.push(element.getNumbersAsString()));
-    new ExcelOutput(this.fields[3].fieldValue).write(this.numberList);
+    // new ExcelOutput(this.fields[3].fieldValue).write(this.numberList);
+    const out = new ExcelOutput(this.fields[3].fieldValue);
+    out.write(this.numberList);
+    this.rowData = out.objects;
     this.snackBar.dismiss();
     this.snackBar.open('Terminé !');
   }

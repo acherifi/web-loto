@@ -12,6 +12,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { GridComponent } from './grid/grid.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppComponent,
     HomeComponent,
     ToolbarComponent,
+    GridComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

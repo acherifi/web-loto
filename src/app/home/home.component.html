@@ -1,10 +1,21 @@
 
 <app-toolbar></app-toolbar>
+<div class="flex-container">
+<div class="grid">
+  <ag-grid-angular 
+  style="width: 500px; height: 500px;" 
+  class="ag-theme-balham"
+  [rowData]="rowData" 
+  [columnDefs]="columnDefs"
+>
+</ag-grid-angular>
+</div>
 <div class="container">
   <mat-form-field appearance="outline" class="field" *ngFor="let field of fields">
     <mat-label>{{field.label}}</mat-label>
     <input matInput placeholder="{{field.placeholder}}" type={{field.type}} [formControl]="field.controller">
   </mat-form-field>
   <button mat-flat-button color="accent" (click)="click()">GÉNÉRER</button>
+</div>
 </div>
 
